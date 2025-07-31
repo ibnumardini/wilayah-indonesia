@@ -15,5 +15,9 @@
     "commander": "^14.0.0",
     "p-limit": "^3.1.0"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibnumardini/wilayah-indonesia-raya.git"
+  }
 }
