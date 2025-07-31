@@ -23,7 +23,7 @@ npm install -g wilayah-indonesia-raya
 Or run directly with npx:
 
 ```bash
-npx wilayah-id
+npx wilayah-indonesia-raya
 ```
 
 ## Usage
@@ -33,9 +33,9 @@ npx wilayah-id
 Fetch the latest administrative data from BPS API:
 
 ```bash
-wilayah-id --fetch
+wilayah-indonesia-raya --fetch
 # or
-wilayah-id -f
+wilayah-indonesia-raya -f
 ```
 
 ### Transform Data
@@ -43,9 +43,9 @@ wilayah-id -f
 Transform raw data into relational format:
 
 ```bash
-wilayah-id --transform
+wilayah-indonesia-raya --transform
 # or
-wilayah-id -t
+wilayah-indonesia-raya -t
 ```
 
 ### Fetch and Transform
@@ -53,7 +53,7 @@ wilayah-id -t
 You can combine both operations:
 
 ```bash
-wilayah-id --fetch --transform
+wilayah-indonesia-raya --fetch --transform
 ```
 
 ## Project Structure

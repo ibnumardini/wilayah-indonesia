@@ -4,7 +4,7 @@
   "description": "Wilayah Indonesia Raya - A CLI tool to manage and transform Indonesian administrative data.",
   "main": "index.js",
   "bin": {
-    "wilayah-id": "src/index.js"
+    "wilayah-indonesia-raya": "src/index.js"
   },
   "scripts": {
     "transform-data": "node src/transform-data.js",
