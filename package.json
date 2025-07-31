@@ -1,5 +1,5 @@
 {
-  "name": "wilayah-indonesia",
+  "name": "@ibnumardini/wilayah-indonesia",
   "version": "1.0.0",
   "description": "Wilayah Indonesia - A CLI tool to manage and transform Indonesian administrative data.",
   "main": "index.js",
@@ -19,5 +19,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ibnumardini/wilayah-indonesia.git"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [
+    "Indonesia"
+  ],
+  "bugs": {
+    "url": "https://github.com/ibnumardini/wilayah-indonesia/issues"
+  },
+  "homepage": "https://github.com/ibnumardini/wilayah-indonesia#readme"
 }
