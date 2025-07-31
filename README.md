@@ -1,4 +1,4 @@
-# Wilayah Indonesia Raya
+# Wilayah Indonesia
 
 A CLI tool to manage and transform Indonesian administrative data from BPS (Badan Pusat Statistik) API.
 
@@ -17,13 +17,13 @@ This tool helps you fetch the latest Indonesian administrative division data (pr
 ## Installation
 
 ```bash
-npm install -g wilayah-indonesia-raya
+npm install -g wilayah-indonesia
 ```
 
 Or run directly with npx:
 
 ```bash
-npx wilayah-indonesia-raya
+npx wilayah-indonesia
 ```
 
 ## Usage
@@ -33,9 +33,9 @@ npx wilayah-indonesia-raya
 Fetch the latest administrative data from BPS API:
 
 ```bash
-wilayah-indonesia-raya --fetch
+wilayah-indonesia --fetch
 # or
-wilayah-indonesia-raya -f
+wilayah-indonesia -f
 ```
 
 ### Transform Data
@@ -43,9 +43,9 @@ wilayah-indonesia-raya -f
 Transform raw data into relational format:
 
 ```bash
-wilayah-indonesia-raya --transform
+wilayah-indonesia --transform
 # or
-wilayah-indonesia-raya -t
+wilayah-indonesia -t
 ```
 
 ### Fetch and Transform
@@ -53,7 +53,7 @@ wilayah-indonesia-raya -t
 You can combine both operations:
 
 ```bash
-wilayah-indonesia-raya --fetch --transform
+wilayah-indonesia --fetch --transform
 ```
 
 ## Project Structure
@@ -154,7 +154,7 @@ The transformed data provides a cleaner structure:
 
     ```bash
     git clone <repository-url>
-    cd wilayah-indonesia-raya
+    cd wilayah-indonesia
     ```
 
 2. Install dependencies:

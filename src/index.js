@@ -8,7 +8,7 @@ const transformData = require("./transform-data");
 program
   .version("1.0.0")
   .description(
-    "Wilayah Indonesia Raya - A CLI tool to manage and transform Indonesian administrative data."
+    "Wilayah Indonesia - A CLI tool to manage and transform Indonesian administrative data."
   )
   .option("-f, --fetch", "Fetch latest raw data from BPS API")
   .option("-t, --transform", "Transform raw data into relational format")
