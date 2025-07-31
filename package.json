@@ -1,0 +1,19 @@
+{
+  "name": "wilayah-indonesia-raya",
+  "version": "1.0.0",
+  "description": "Wilayah Indonesia Raya - A CLI tool to manage and transform Indonesian administrative data.",
+  "main": "index.js",
+  "bin": {
+    "wilayah-id": "src/index.js"
+  },
+  "scripts": {
+    "transform-data": "node src/transform-data.js",
+    "fetch-data": "node src/fetch-data.js"
+  },
+  "author": "Muhammad Fatkurozi <fatkurozy.muhammad28@gmail.com>",
+  "dependencies": {
+    "commander": "^14.0.0",
+    "p-limit": "^3.1.0"
+  },
+  "license": "Apache-2.0"
+}
