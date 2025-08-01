@@ -18,3 +18,13 @@ exports.writeToFile = (filename, data) => {
     }
   });
 };
+
+exports.readFromFile = async (filename) => {
+  try {
+    const data = await fs.promises.readFile(filename, "utf8");
+    return JSON.parse(data);
+  } catch (err) {
+    console.error(`Error reading from file ${filename}:`, err);
+    return null;
+  }
+};

@@ -1,15 +1,16 @@
-const { writeToFile } = require("./helper/file");
+const { writeToFile, readFromFile } = require("./helper/file");
 const { titleCase } = require("./helper/string");
-
-const provinces = require("../data/raw/1-provinces.json");
-const regencies = require("../data/raw/2-regencies.json");
-const districts = require("../data/raw/3-districts.json");
-const subdistricts = require("../data/raw/4-subdistricts.json");
-const postcodes = require("../data/raw/5-postcodes.json");
 
 const transformData = async () => {
   try {
+    const dataRawPath = "./data/raw";
     const dataPath = "./data/transformed";
+
+    const provinces = await readFromFile(`${dataRawPath}/1-provinces.json`);
+    if (!provinces) {
+      console.log("Provinces data not found");
+      return;
+    }
 
     const transformedProvinces = provinces.map((province) => ({
       code: province.kode_bps,
@@ -17,6 +18,12 @@ const transformData = async () => {
     }));
 
     writeToFile(`${dataPath}/1-provinces.json`, transformedProvinces);
+
+    const regencies = await readFromFile(`${dataRawPath}/2-regencies.json`);
+    if (!regencies) {
+      console.log("Regencies data not found");
+      return;
+    }
 
     const transformedRegencies = regencies.map((regency) => ({
       code: regency.kode_bps,
@@ -26,6 +33,12 @@ const transformData = async () => {
 
     writeToFile(`${dataPath}/2-regencies.json`, transformedRegencies);
 
+    const districts = await readFromFile(`${dataRawPath}/3-districts.json`);
+    if (!districts) {
+      console.log("Districts data not found");
+      return;
+    }
+
     const transformedDistricts = districts.map((district) => ({
       code: district.kode_bps,
       name: titleCase(district.nama_bps),
@@ -34,6 +47,14 @@ const transformData = async () => {
 
     writeToFile(`${dataPath}/3-districts.json`, transformedDistricts);
 
+    const subdistricts = await readFromFile(
+      `${dataRawPath}/4-subdistricts.json`
+    );
+    if (!subdistricts) {
+      console.log("Subdistricts data not found");
+      return;
+    }
+
     const transformedSubdistricts = subdistricts.map((subdistrict) => ({
       code: subdistrict.kode_bps,
       name: titleCase(subdistrict.nama_bps),
@@ -41,6 +62,12 @@ const transformData = async () => {
     }));
 
     writeToFile(`${dataPath}/4-subdistricts.json`, transformedSubdistricts);
+
+    const postcodes = await readFromFile(`${dataRawPath}/5-postcodes.json`);
+    if (!postcodes) {
+      console.log("Postcodes data not found");
+      return;
+    }
 
     const transformedPostcodes = postcodes.map((postCode) => ({
       code: postCode.kode_pos,
