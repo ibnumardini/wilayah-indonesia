@@ -1,6 +1,7 @@
 const pLimit = require("p-limit");
 
 const { writeToFile } = require("./helper/file");
+const logger = require("./helper/logger");
 
 const urlRegion = "https://sig.bps.go.id/rest-bridging/getwilayah";
 const urlPos = "https://sig.bps.go.id/rest-bridging-pos/getwilayah";
@@ -39,17 +40,23 @@ const fetchData = async () => {
 
     writeToFile(`${dataPath}/1-provinces.json`, provinces);
 
+    logger.info("Provinces data fetched successfully", true);
+
     const regencies = await Promise.all(
       provinces.map((province) => limit(() => yield(2, province.kode_bps)))
     );
 
     writeToFile(`${dataPath}/2-regencies.json`, regencies.flat());
 
+    logger.info("Regencies data fetched successfully", true);
+
     const districts = await Promise.all(
       regencies.flat().map((regency) => limit(() => yield(3, regency.kode_bps)))
     );
 
     writeToFile(`${dataPath}/3-districts.json`, districts.flat());
+
+    logger.info("Districts data fetched successfully", true);
 
     const subdistricts = await Promise.all(
       districts
@@ -59,6 +66,8 @@ const fetchData = async () => {
 
     writeToFile(`${dataPath}/4-subdistricts.json`, subdistricts.flat());
 
+    logger.info("Subdistricts data fetched successfully", true);
+
     const postcodes = await Promise.all(
       provinces.map((province) =>
         limit(() => yield(4, province.kode_bps, true))
@@ -66,8 +75,10 @@ const fetchData = async () => {
     );
 
     writeToFile(`${dataPath}/5-postcodes.json`, postcodes.flat());
+
+    logger.info("Postcodes data fetched successfully", true);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 

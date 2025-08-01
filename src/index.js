@@ -2,6 +2,8 @@
 
 const { program } = require("commander");
 
+const logger = require("./helper/logger");
+
 const fetchData = require("./fetch-data");
 const transformData = require("./transform-data");
 
@@ -16,18 +18,24 @@ program
     if (options.fetch) {
       try {
         await fetchData();
-        console.log("Data fetched successfully.");
+        logger.info("Data fetched successfully", true);
       } catch (error) {
-        console.error("Error fetching data:", error.message);
+        logger.info(error.message, true);
+        logger.error("Error fetching data:", error);
+      } finally {
+        logger.info("Fetching complete", true);
       }
     }
 
     if (options.transform) {
       try {
         await transformData();
-        console.log("Data transformed successfully.");
+        logger.info("Data transformed successfully", true);
       } catch (error) {
-        console.error("Error transforming data:", error.message);
+        logger.info(error.message, true);
+        logger.error("Error transforming data:", error);
+      } finally {
+        logger.info("Transformation complete", true);
       }
     }
 

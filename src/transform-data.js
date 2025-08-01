@@ -1,5 +1,6 @@
 const { writeToFile, readFromFile } = require("./helper/file");
 const { titleCase } = require("./helper/string");
+const logger = require("./helper/logger");
 
 const transformData = async () => {
   try {
@@ -7,10 +8,7 @@ const transformData = async () => {
     const dataPath = "./data/transformed";
 
     const provinces = await readFromFile(`${dataRawPath}/1-provinces.json`);
-    if (!provinces) {
-      console.log("Provinces data not found");
-      return;
-    }
+    if (!provinces) throw new Error("Provinces data not found");
 
     const transformedProvinces = provinces.map((province) => ({
       code: province.kode_bps,
@@ -19,11 +17,10 @@ const transformData = async () => {
 
     writeToFile(`${dataPath}/1-provinces.json`, transformedProvinces);
 
+    logger.info("Provinces data transformed successfully", true);
+
     const regencies = await readFromFile(`${dataRawPath}/2-regencies.json`);
-    if (!regencies) {
-      console.log("Regencies data not found");
-      return;
-    }
+    if (!regencies) throw new Error("Regencies data not found");
 
     const transformedRegencies = regencies.map((regency) => ({
       code: regency.kode_bps,
@@ -33,11 +30,10 @@ const transformData = async () => {
 
     writeToFile(`${dataPath}/2-regencies.json`, transformedRegencies);
 
+    logger.info("Regencies data transformed successfully", true);
+
     const districts = await readFromFile(`${dataRawPath}/3-districts.json`);
-    if (!districts) {
-      console.log("Districts data not found");
-      return;
-    }
+    if (!districts) throw new Error("Districts data not found");
 
     const transformedDistricts = districts.map((district) => ({
       code: district.kode_bps,
@@ -47,13 +43,12 @@ const transformData = async () => {
 
     writeToFile(`${dataPath}/3-districts.json`, transformedDistricts);
 
+    logger.info("Districts data transformed successfully", true);
+
     const subdistricts = await readFromFile(
       `${dataRawPath}/4-subdistricts.json`
     );
-    if (!subdistricts) {
-      console.log("Subdistricts data not found");
-      return;
-    }
+    if (!subdistricts) throw new Error("Subdistricts data not found");
 
     const transformedSubdistricts = subdistricts.map((subdistrict) => ({
       code: subdistrict.kode_bps,
@@ -63,11 +58,10 @@ const transformData = async () => {
 
     writeToFile(`${dataPath}/4-subdistricts.json`, transformedSubdistricts);
 
+    logger.info("Subdistricts data transformed successfully", true);
+
     const postcodes = await readFromFile(`${dataRawPath}/5-postcodes.json`);
-    if (!postcodes) {
-      console.log("Postcodes data not found");
-      return;
-    }
+    if (!postcodes) throw new Error("Postcodes data not found");
 
     const transformedPostcodes = postcodes.map((postCode) => ({
       code: postCode.kode_pos,
@@ -76,8 +70,10 @@ const transformData = async () => {
     }));
 
     writeToFile(`${dataPath}/5-postcodes.json`, transformedPostcodes);
+
+    logger.info("Postcodes data transformed successfully", true);
   } catch (error) {
-    console.error("Error during transformation:", error);
+    throw error;
   }
 };
 
