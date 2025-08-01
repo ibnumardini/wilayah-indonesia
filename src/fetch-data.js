@@ -6,10 +6,10 @@ const urlRegion = "https://sig.bps.go.id/rest-bridging/getwilayah";
 const urlPos = "https://sig.bps.go.id/rest-bridging-pos/getwilayah";
 
 const levels = {
-  1: "provinsi",
-  2: "kabupaten",
-  3: "kecamatan",
-  4: "desa",
+  1: "provinsi", // province
+  2: "kabupaten", // city/regency
+  3: "kecamatan", // district
+  4: "desa", // village/subdistrict
 };
 
 const yield = async (level, parent = false, pos = false) => {
@@ -39,27 +39,25 @@ const fetchData = async () => {
 
     writeToFile(`${dataPath}/1-provinces.json`, provinces);
 
-    const districts = await Promise.all(
+    const regencies = await Promise.all(
       provinces.map((province) => limit(() => yield(2, province.kode_bps)))
     );
 
-    writeToFile(`${dataPath}/2-districts.json`, districts.flat());
+    writeToFile(`${dataPath}/2-regencies.json`, regencies.flat());
+
+    const districts = await Promise.all(
+      regencies.flat().map((regency) => limit(() => yield(3, regency.kode_bps)))
+    );
+
+    writeToFile(`${dataPath}/3-districts.json`, districts.flat());
 
     const subdistricts = await Promise.all(
       districts
         .flat()
-        .map((district) => limit(() => yield(3, district.kode_bps)))
+        .map((district) => limit(() => yield(4, district.kode_bps)))
     );
 
-    writeToFile(`${dataPath}/3-subdistricts.json`, subdistricts.flat());
-
-    const villages = await Promise.all(
-      subdistricts
-        .flat()
-        .map((subdistrict) => limit(() => yield(4, subdistrict.kode_bps)))
-    );
-
-    writeToFile(`${dataPath}/4-villages.json`, villages.flat());
+    writeToFile(`${dataPath}/4-subdistricts.json`, subdistricts.flat());
 
     const postcodes = await Promise.all(
       provinces.map((province) =>

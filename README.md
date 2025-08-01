@@ -4,7 +4,7 @@ A CLI tool to manage and transform Indonesian administrative data from BPS (Bada
 
 ## Description
 
-This tool helps you fetch the latest Indonesian administrative division data (provinces, districts, subdistricts, villages, and postal codes) from the official BPS API and transform it into a clean, relational format suitable for applications.
+This tool helps you fetch the latest Indonesian administrative division data (provinces, regencies, districts, subdistricts and postal codes) from the official BPS API and transform it into a clean, relational format suitable for applications.
 
 ## Features
 
@@ -62,15 +62,15 @@ wilayah-indonesia --fetch --transform
 ├── data/
 │   ├── raw/                    # Raw data from BPS API
 │   │   ├── 1-provinces.json
-│   │   ├── 2-districts.json
-│   │   ├── 3-subdistricts.json
-│   │   ├── 4-villages.json
+│   │   ├── 2-regencies.json
+│   │   ├── 3-districts.json
+│   │   ├── 4-subdistricts.json
 │   │   └── 5-postcodes.json
 │   └── transformed/            # Cleaned and structured data
 │       ├── 1-provinces.json
-│       ├── 2-districts.json
-│       ├── 3-subdistricts.json
-│       ├── 4-villages.json
+│       ├── 2-regencies.json
+│       ├── 3-districts.json
+│       ├── 4-subdistricts.json
 │       └── 5-postcodes.json
 ├── src/
 │   ├── index.js               # Main CLI entry point
@@ -101,7 +101,7 @@ The transformed data provides a cleaner structure:
 }
 ```
 
-**Districts:**
+**Regencies:**
 
 ```json
 {
@@ -111,23 +111,23 @@ The transformed data provides a cleaner structure:
 }
 ```
 
-**Subdistricts:**
+**Districts:**
 
 ```json
 {
   "code": "1101010",
   "name": "Teupah Selatan",
-  "district_code": "1101"
+  "regency_code": "1101"
 }
 ```
 
-**Villages:**
+**Subdistricts:**
 
 ```json
 {
   "code": "1101010001",
   "name": "Latiung",
-  "subdistrict_code": "1101010"
+  "district_code": "1101010"
 }
 ```
 
@@ -137,7 +137,7 @@ The transformed data provides a cleaner structure:
 {
   "code": "23891",
   "name": "Latiung",
-  "village_code": "1101010001"
+  "subdistrict_code": "1101010001"
 }
 ```
 
@@ -152,26 +152,26 @@ The transformed data provides a cleaner structure:
 
 1. Clone the repository:
 
-    ```bash
-    git clone <repository-url>
-    cd wilayah-indonesia
-    ```
+   ```bash
+   git clone <repository-url>
+   cd wilayah-indonesia
+   ```
 
 2. Install dependencies:
 
-    ```bash
-    pnpm install
-    ```
+   ```bash
+   pnpm install
+   ```
 
 3. Run development commands:
 
-    ```bash
-    # Fetch data only
-    pnpm run fetch-data
+   ```bash
+   # Fetch data only
+   pnpm run fetch-data
 
-    # Transform data only
-    pnpm run transform-data
-    ```
+   # Transform data only
+   pnpm run transform-data
+   ```
 
 ## Dependencies
 
