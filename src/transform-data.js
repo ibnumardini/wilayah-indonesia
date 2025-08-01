@@ -1,54 +1,54 @@
 const { writeToFile } = require("./helper/file");
 const { titleCase } = require("./helper/string");
 
-const rawProvinces = require("../data/raw/1-provinces.json");
-const rawDistricts = require("../data/raw/2-districts.json");
-const rawSubdistricts = require("../data/raw/3-subdistricts.json");
-const rawVillages = require("../data/raw/4-villages.json");
-const rawPostCodes = require("../data/raw/5-postcodes.json");
+const provinces = require("../data/raw/1-provinces.json");
+const districts = require("../data/raw/2-districts.json");
+const subdistricts = require("../data/raw/3-subdistricts.json");
+const villages = require("../data/raw/4-villages.json");
+const postcodes = require("../data/raw/5-postcodes.json");
 
 const transformData = async () => {
   try {
     const dataPath = "./data/transformed";
 
-    const transformedProvinces = rawProvinces.map((province) => ({
+    const transformedProvinces = provinces.map((province) => ({
       code: province.kode_bps,
       name: titleCase(province.nama_bps),
     }));
 
     writeToFile(`${dataPath}/1-provinces.json`, transformedProvinces);
 
-    const districts = rawDistricts.map((district) => ({
+    const transformedDistricts = districts.map((district) => ({
       code: district.kode_bps,
       name: titleCase(district.nama_bps),
       province_code: district.kode_bps.slice(0, 2),
     }));
 
-    writeToFile(`${dataPath}/2-districts.json`, districts);
+    writeToFile(`${dataPath}/2-districts.json`, transformedDistricts);
 
-    const subdistricts = rawSubdistricts.map((subdistrict) => ({
+    const transformedSubdistricts = subdistricts.map((subdistrict) => ({
       code: subdistrict.kode_bps,
       name: titleCase(subdistrict.nama_bps),
       district_code: subdistrict.kode_bps.slice(0, 4),
     }));
 
-    writeToFile(`${dataPath}/3-subdistricts.json`, subdistricts);
+    writeToFile(`${dataPath}/3-subdistricts.json`, transformedSubdistricts);
 
-    const villages = rawVillages.map((village) => ({
+    const transformedVillages = villages.map((village) => ({
       code: village.kode_bps,
       name: titleCase(village.nama_bps),
       subdistrict_code: village.kode_bps.slice(0, 7),
     }));
 
-    writeToFile(`${dataPath}/4-villages.json`, villages);
+    writeToFile(`${dataPath}/4-villages.json`, transformedVillages);
 
-    const postCodes = rawPostCodes.map((postCode) => ({
+    const transformedPostcodes = postcodes.map((postCode) => ({
       code: postCode.kode_pos,
       name: titleCase(postCode.nama_pos),
       village_code: postCode.kode_bps,
     }));
 
-    writeToFile(`${dataPath}/5-postcodes.json`, postCodes);
+    writeToFile(`${dataPath}/5-postcodes.json`, transformedPostcodes);
   } catch (error) {
     console.error("Error during transformation:", error);
   }
