@@ -44,7 +44,7 @@ const transformData = async () => {
 
     const postCodes = rawPostCodes.map((postCode) => ({
       code: postCode.kode_pos,
-      name: titleCase(postCode.nama_bps),
+      name: titleCase(postCode.nama_pos),
       village_code: postCode.kode_bps,
     }));
 
