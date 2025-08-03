@@ -17,13 +17,13 @@ This tool helps you fetch the latest Indonesian administrative division data (pr
 ## Installation
 
 ```bash
-npm install -g wilayah-indonesia
+npm install -g @ibnumardini/wilayah-indonesia
 ```
 
 Or run directly with npx:
 
 ```bash
-npx wilayah-indonesia
+npx @ibnumardini/wilayah-indonesia
 ```
 
 ## Usage
