@@ -1,6 +1,6 @@
 {
   "name": "@ibnumardini/wilayah-indonesia",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Wilayah Indonesia - A CLI tool to manage and transform Indonesian administrative data.",
   "main": "index.js",
   "bin": {
